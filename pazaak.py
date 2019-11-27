@@ -73,7 +73,7 @@ class Hand:
 
 def play(card, hand, table):
     table.draw(hand.play(card))
-    print('Current table:', str(table))
+    print('\nCurrent table:', str(table))
     choice = input('  (1) End turn\n'
                    '  (2) Stand\n')
     return choice
@@ -81,7 +81,7 @@ def play(card, hand, table):
 
 def turn(deck, hand, table):
     table.draw(deck.deal())
-    print('Current table:', str(table))
+    print('\nCurrent table:', str(table))
     print('Hand:', str(hand))
     choice = input('  (1) End turn\n'
                    '  (2) Play a card\n'
@@ -123,13 +123,12 @@ for card in side_deck_input:
         suit = card[:3]
     side_deck_cards.append(Card(value, suit))
 side_deck = Hand(side_deck_cards)
-print('Side deck:', str(side_deck))
 table = Table()
 while True:
     result = turn(deck, side_deck, table)
     if result == '3':
-        print('Standing at', table.value)
+        print('\nStanding at', table.value)
         break
     if table.value > 20:
-        print('Bust:', table.value)
+        print('\nBust:', table.value)
         break
