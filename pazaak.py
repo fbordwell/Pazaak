@@ -123,6 +123,7 @@ def build_side_deck(player):
     valid = True
     if len(side_deck_input) != 10:
         valid = False
+    counter = 0
     for card in side_deck_input:
         if not len(card) == 2 and not len(card) == 4:
             valid = False
@@ -139,7 +140,12 @@ def build_side_deck(player):
         if suit != '+' and suit != '-' and suit != '+/-':
             valid = False
             break
+        if suit == '+/-':
+            counter += 1
+    if counter > 2:
+        valid = False
     while valid == False:
+        counter = 0
         side_deck_input = input('Invalid side deck entered. '
                                 'Please try again:\n').split()
         for card in side_deck_input:
@@ -154,6 +160,8 @@ def build_side_deck(player):
             else:
                 suit = card[:3]
             if suit != '+' and suit != '-' and suit != '+/-':
+                break
+            if len(side_deck_input) != 10:
                 break
             valid = True
     side_deck_cards = []
